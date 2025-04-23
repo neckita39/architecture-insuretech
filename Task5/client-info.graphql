@@ -1,0 +1,73 @@
+# сущности и поля
+
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document]
+  relatives: [Relative]
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+# необходимые запросы
+
+# инфа о клиенте
+query {
+  client(id: "1") {
+  	id
+    name
+    age
+  }
+}
+
+# инфа о клиенте и документах
+
+query {
+	client(id: "1") {
+		id
+		name
+		documents {
+			id
+			type
+			number
+			issueDate
+			expiryDate
+        }
+	}
+}
+
+# инфа о клиенте и родственниках и документах
+
+query {
+	client(id: "1") {
+		id
+		name
+		documents {
+			id
+			type
+			number
+			issueDate
+			expiryDate
+        }
+        relatives {
+			id
+			relationType
+			age
+        }
+	}
+}
+
